@@ -10,7 +10,7 @@ const Login = () => {
     password: undefined,
   });
 
-  const { loading, error, dispatch } = useContext(AuthContext);
+  const { user,loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -26,14 +26,15 @@ const Login = () => {
     try {
       const res  = await axios.post("http://localhost:5000/api/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-     navigate("/")
+     navigate("/home")
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
        }
   };
 
+ 
   console.log(credentials);
-  //console.log(user);
+  //console.log(user.id);
 
 
   return (
